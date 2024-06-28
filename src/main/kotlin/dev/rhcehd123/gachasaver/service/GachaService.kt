@@ -1,8 +1,9 @@
 package dev.rhcehd123.gachasaver.service
 
-import dev.rhcehd123.gachasaver.model.GachaItem
-import dev.rhcehd123.gachasaver.model.GachaResult
-import dev.rhcehd123.gachasaver.model.User
+import dev.rhcehd123.gachasaver.model.GachaHistory
+import dev.rhcehd123.gachasaver.model.entity.GachaItem
+import dev.rhcehd123.gachasaver.model.entity.GachaResult
+import dev.rhcehd123.gachasaver.model.entity.User
 import dev.rhcehd123.gachasaver.repository.GachaItemRepository
 import dev.rhcehd123.gachasaver.repository.GachaRepository
 import dev.rhcehd123.gachasaver.repository.GachaResultRepository
@@ -34,7 +35,6 @@ class GachaService @Autowired constructor(
         }
 
         val gachaResult = GachaResult().apply {
-            this.id = gachaId
             this.user = user
             this.gachaItem = gachaItem
         }
@@ -42,7 +42,18 @@ class GachaService @Autowired constructor(
         return gachaResultRepository.save(gachaResult)
     }
 
-    fun getGachaResult(gachaItems: List<GachaItem>): GachaItem {
+    fun getGachaHistory(userId: String, projectId: Long): List<GachaHistory> {
+        return gachaResultRepository.findAllByUserIdAndProjectId(userId, projectId)
+            .map {
+                GachaHistory(
+                    name = it.gachaItem.name,
+                    rate = it.gachaItem.rate,
+                    datetime = it.datetime.toString(),
+                )
+            }
+    }
+
+    private fun getGachaResult(gachaItems: List<GachaItem>): GachaItem {
         val randomDouble: BigDecimal = BigDecimal((Random.nextDouble() * 100))
         var minValue = BigDecimal("0")
         var maxValue = BigDecimal("0")

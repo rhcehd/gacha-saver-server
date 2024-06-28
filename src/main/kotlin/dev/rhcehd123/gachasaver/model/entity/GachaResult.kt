@@ -1,4 +1,4 @@
-package dev.rhcehd123.gachasaver.model
+package dev.rhcehd123.gachasaver.model.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.Column
@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import java.time.LocalDateTime
 
 @Entity
 class GachaResult() {
@@ -24,5 +25,7 @@ class GachaResult() {
     @ManyToOne
     @JoinColumn(name = "gacha_item_id")
     var gachaItem: GachaItem = GachaItem()
+
+    val datetime: LocalDateTime = LocalDateTime.now()
 }
 

@@ -1,8 +1,8 @@
 package dev.rhcehd123.gachasaver.config
 
-import dev.rhcehd123.gachasaver.model.Gacha
-import dev.rhcehd123.gachasaver.model.GachaItem
-import dev.rhcehd123.gachasaver.model.Project
+import dev.rhcehd123.gachasaver.model.entity.Gacha
+import dev.rhcehd123.gachasaver.model.entity.GachaItem
+import dev.rhcehd123.gachasaver.model.entity.Project
 import dev.rhcehd123.gachasaver.repository.GachaItemRepository
 import dev.rhcehd123.gachasaver.repository.GachaRepository
 import dev.rhcehd123.gachasaver.repository.ProjectRepository

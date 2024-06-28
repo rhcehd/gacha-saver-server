@@ -1,6 +1,6 @@
 package dev.rhcehd123.gachasaver.service
 
-import dev.rhcehd123.gachasaver.model.User
+import dev.rhcehd123.gachasaver.model.entity.User
 import dev.rhcehd123.gachasaver.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull

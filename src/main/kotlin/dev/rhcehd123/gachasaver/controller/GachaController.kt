@@ -1,14 +1,12 @@
 package dev.rhcehd123.gachasaver.controller
 
-import dev.rhcehd123.gachasaver.model.GachaItem
+import dev.rhcehd123.gachasaver.model.entity.GachaItem
 import dev.rhcehd123.gachasaver.model.network.CommonResponse
 import dev.rhcehd123.gachasaver.service.GachaService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class GachaController @Autowired constructor(
@@ -31,6 +29,15 @@ class GachaController @Autowired constructor(
             .data(results)
             .build()
 
+        return ResponseEntity(data, HttpStatus.OK)
+    }
+
+    @GetMapping("history")
+    fun getGachaHistory(@RequestParam projectId: Long, @RequestParam userId: String): ResponseEntity<CommonResponse> {
+        val gachaHistoryList = gachaService.getGachaHistory(userId, projectId)
+        val data = CommonResponse.Builder()
+            .data(gachaHistoryList)
+            .build()
         return ResponseEntity(data, HttpStatus.OK)
     }
 }

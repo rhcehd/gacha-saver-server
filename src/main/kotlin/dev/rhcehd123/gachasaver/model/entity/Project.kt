@@ -1,4 +1,4 @@
-package dev.rhcehd123.gachasaver.model
+package dev.rhcehd123.gachasaver.model.entity
 
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.Column
